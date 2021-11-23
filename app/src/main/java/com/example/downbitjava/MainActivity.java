@@ -5,15 +5,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
 import com.example.downbitjava.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<mTimer> extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     int ed_change = ed;
     int ripple = 0;
     int ripple_change = ripple;
+    Random random = new Random();
+    double upping = random.nextInt(200) + 1;
 
 
     @Override
@@ -45,37 +51,31 @@ public class MainActivity extends AppCompatActivity {
 
         profileDataArrayList = new ArrayList<>();
 
-        Random random = new Random();
-
-        double upping = random.nextInt(200) + 1;
         start_price = random.nextInt(10000000) + 1;
         bitcoin = (int) (start_price * upping);
         bitcoin_change = bitcoin - bitcoin_change;
 
-        profileDataArrayList.add(new ProfileData("비트코인",bitcoin_change,upping,bitcoin));
+        profileDataArrayList.add(new ProfileData("비트코인", bitcoin_change, upping, bitcoin));
 
-            start_price = random.nextInt(10000000) + 1;
-            upping = random.nextInt(200);
-            doz = (int)(start_price * upping);
-            doz_change = doz - doz_change;
+        price();
+        doz = (int) (start_price * upping);
+        doz_change = doz - doz_change;
 
-            profileDataArrayList.add(new ProfileData("도지코인",doz_change,upping,doz));
+        profileDataArrayList.add(new ProfileData("도지코인", doz_change, upping, doz));
 
-            start_price();
-            ed = (int)(start_price * upping);
-            ed_change = ed - ed_change;
-
+        price();
+        ed = (int) (start_price * upping);
+        ed_change = ed - ed_change;
 
 
-            profileDataArrayList.add(new ProfileData("이더리움",ed_change,upping,ed));
+        profileDataArrayList.add(new ProfileData("이더리움", ed_change, upping, ed));
 
-            start_price = random.nextInt(10000000) + 1;
-            upping = random.nextInt(200);
-            ripple = (int)(start_price * upping);
-            ripple_change = ripple - ripple_change;
+        price();
+        ripple = (int) (start_price * upping);
+        ripple_change = ripple - ripple_change;
 
 
-            profileDataArrayList.add(new ProfileData("리플",ripple_change,upping,ripple));
+        profileDataArrayList.add(new ProfileData("리플", ripple_change, upping, ripple));
 
 
         //Adapter 시작 (initiate adapter)
@@ -85,13 +85,18 @@ public class MainActivity extends AppCompatActivity {
 
         //RecyclerView 시작 (initiate recyclerview)
         mRecyclerView.setAdapter(myRecyclerViewAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
 
-        void price() {
 
-        }
 
     }
+
+    void price() {
+        start_price = random.nextInt(10000) + 1;
+        upping = random.nextInt(200);
+    }
+
+
 
 }

@@ -75,6 +75,8 @@ class ViewHolder extends RecyclerView.ViewHolder {
         upping = itemView.findViewById(R.id.upping);
         price = itemView.findViewById(R.id.price);
     }
+
+
     void onBind(ProfileData item) {
         sub_name.setText(item.getName());
         increase.setText(String.valueOf(item.getIncrease()));
