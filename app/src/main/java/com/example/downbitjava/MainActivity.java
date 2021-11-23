@@ -3,10 +3,12 @@ package com.example.downbitjava;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 
 import com.example.downbitjava.databinding.ActivityMainBinding;
@@ -24,6 +26,8 @@ public class MainActivity<mTimer> extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter myRecyclerViewAdapter;
     private ArrayList<ProfileData> profileDataArrayList;
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
     int increase = 0;
 
@@ -46,6 +50,17 @@ public class MainActivity<mTimer> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                price();
+                Log.d("refresh", "새로고침 성공 !!");
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         mRecyclerView = findViewById(R.id.recyclerviewid);
 
@@ -86,8 +101,6 @@ public class MainActivity<mTimer> extends AppCompatActivity {
         //RecyclerView 시작 (initiate recyclerview)
         mRecyclerView.setAdapter(myRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-
-
 
 
     }
