@@ -1,5 +1,7 @@
 package com.example.downbitjava;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,8 +9,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 
@@ -16,8 +16,6 @@ import com.example.downbitjava.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class MainActivity<mTimer> extends AppCompatActivity implements View.OnClickListener {
@@ -31,20 +29,22 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
 
     SwipeRefreshLayout swipeRefreshLayout;
 
+    Random random = new Random();
+
     int increase = 0;
 
     int start_price = 0;
 
-    int bitcoin = 0;
+    int bitcoin = price();
     int bitcoin_change = bitcoin;
-    int doz = 0;
+    int doz = price();
     int doz_change = doz;
-    int ed = 0;
+    int ed = price();
     int ed_change = ed;
-    int ripple = 0;
+    int ripple = price();
     int ripple_change = ripple;
-    Random random = new Random();
     double upping = 0;
+    int tmp = 0;
 
 
     @Override
@@ -76,29 +76,38 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
 
         profileDataArrayList = new ArrayList<>();
 
-        price();
-        bitcoin = (int) (start_price * upping);
-        bitcoin_change = bitcoin - bitcoin_change;
+
+        upping = random.nextInt(200);
+        tmp = bitcoin;
+        bitcoin *= upping;
+        bitcoin_change = bitcoin - tmp;
 
         profileDataArrayList.add(new ProfileData("비트코인", bitcoin_change, upping, bitcoin));
 
-        price();
-        doz = (int) (start_price * upping);
-        doz_change = doz - doz_change;
 
+        upping = random.nextInt(200);
+        tmp = doz;
+        doz *= upping;
+        doz_change = doz - tmp;
 
         profileDataArrayList.add(new ProfileData("도지코인", doz_change, upping, doz));
 
-        price();
-        ed = (int) (start_price * upping);
-        ed_change = ed - ed_change;
+
+        upping = random.nextInt(200);
+
+        tmp = ed;
+        ed *= upping;
+        ed_change = ed - tmp;
 
 
         profileDataArrayList.add(new ProfileData("이더리움", ed_change, upping, ed));
 
-        price();
-        ripple = (int) (start_price * upping);
-        ripple_change = ripple - ripple_change;
+
+        upping = random.nextInt(200);
+
+        tmp = ripple;
+        ripple *= upping;
+        ripple_change = ripple - tmp;
 
 
         profileDataArrayList.add(new ProfileData("리플", ripple_change, upping, ripple));
@@ -116,13 +125,9 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
 
     }
 
-    void price() {
+    int price() {
         start_price = random.nextInt(10000) + 1;
-        upping = random.nextInt(200);
-    }
-
-    void increase(int coin_price, int coin_change) {
-
+        return start_price;
     }
 
 
