@@ -36,13 +36,13 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
     int start_price = 0;
 
     int bitcoin = price();
-    int bitcoin_change = bitcoin;
+    int bitcoin_change;
     int doz = price();
-    int doz_change = doz;
+    int doz_change;
     int ed = price();
-    int ed_change = ed;
+    int ed_change;
     int ripple = price();
-    int ripple_change = ripple;
+    int ripple_change;
     double upping = 0;
     int tmp = 0;
 
@@ -56,12 +56,9 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                price();
                 Log.d("refresh", "새로고침 성공 !!");
 
-                price();
-
-                //Update 가 끝났을음 알림
+                //Update 가 끝났음을 알림
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -76,40 +73,16 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
 
         profileDataArrayList = new ArrayList<>();
 
-
-        upping = random.nextInt(200);
-        tmp = bitcoin;
-        bitcoin *= upping;
-        bitcoin_change = bitcoin - tmp;
-
+        calculate(bitcoin,bitcoin_change);
         profileDataArrayList.add(new ProfileData("비트코인", bitcoin_change, upping, bitcoin));
 
-
-        upping = random.nextInt(200);
-        tmp = doz;
-        doz *= upping;
-        doz_change = doz - tmp;
-
+        calculate(doz,doz_change);
         profileDataArrayList.add(new ProfileData("도지코인", doz_change, upping, doz));
 
-
-        upping = random.nextInt(200);
-
-        tmp = ed;
-        ed *= upping;
-        ed_change = ed - tmp;
-
-
+        calculate(ed,ed_change);
         profileDataArrayList.add(new ProfileData("이더리움", ed_change, upping, ed));
 
-
-        upping = random.nextInt(200);
-
-        tmp = ripple;
-        ripple *= upping;
-        ripple_change = ripple - tmp;
-
-
+        calculate(ripple,ripple_change);
         profileDataArrayList.add(new ProfileData("리플", ripple_change, upping, ripple));
 
 
@@ -130,6 +103,13 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         return start_price;
     }
 
+    void calculate(int coin, int change) {
+        upping = random.nextInt(200);
+
+        tmp = coin;
+        coin *= upping;
+        change = coin - tmp;
+    }
 
     @Override
     public void onClick(View view) {
