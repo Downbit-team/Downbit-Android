@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DownBitJava">
         <activity
-            android:name=".exchange"
+            android:name=".Property"
             android:exported="false" />
         <activity android:name=".MainActivity" />
         <activity

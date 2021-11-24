@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,13 +20,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity<mTimer> extends AppCompatActivity {
+public class MainActivity<mTimer> extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityMainBinding binding;
 
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter myRecyclerViewAdapter;
     private ArrayList<ProfileData> profileDataArrayList;
+
 
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -42,14 +44,13 @@ public class MainActivity<mTimer> extends AppCompatActivity {
     int ripple = 0;
     int ripple_change = ripple;
     Random random = new Random();
-    double upping = random.nextInt(200) + 1;
+    double upping = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_main);
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -58,15 +59,24 @@ public class MainActivity<mTimer> extends AppCompatActivity {
                 price();
                 Log.d("refresh", "새로고침 성공 !!");
 
+                price();
+
+                //Update 가 끝났을음 알림
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
+        //intent
+
+        View property_btn = findViewById(R.id.property_btn);
+        property_btn.setOnClickListener(this);
+
 
         mRecyclerView = findViewById(R.id.recyclerviewid);
 
         profileDataArrayList = new ArrayList<>();
 
-        start_price = random.nextInt(10000000) + 1;
+        price();
         bitcoin = (int) (start_price * upping);
         bitcoin_change = bitcoin - bitcoin_change;
 
@@ -75,6 +85,7 @@ public class MainActivity<mTimer> extends AppCompatActivity {
         price();
         doz = (int) (start_price * upping);
         doz_change = doz - doz_change;
+
 
         profileDataArrayList.add(new ProfileData("도지코인", doz_change, upping, doz));
 
@@ -110,6 +121,17 @@ public class MainActivity<mTimer> extends AppCompatActivity {
         upping = random.nextInt(200);
     }
 
+    void increase(int coin_price, int coin_change) {
+
+    }
 
 
+    @Override
+    public void onClick(View view) {
+
+        Intent intent = new Intent(getApplicationContext(),Property.class);
+        startActivity(intent);
+        setResult(RESULT_OK,intent);
+        finish();
+    }
 }
