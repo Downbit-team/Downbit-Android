@@ -17,6 +17,7 @@ import com.example.downbitjava.databinding.ActivityMainBinding;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -83,6 +84,7 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
 //        tmp = bitcoin;
 //        bitcoin *= upping;
 //        bitcoin_change = bitcoin - tmp;
+
         calculate(coin1);
         profileDataArrayList.add(coin1);
         calculate(coin2);
@@ -108,7 +110,26 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
             @Override
             public void onRefresh() {
                 Log.d("refresh", "새로고침 성공 !!");
+                profileDataArrayList.clear();
 
+                calculate(coin1);
+                profileDataArrayList.add(coin1);
+                calculate(coin2);
+                profileDataArrayList.add(coin2);
+                calculate(coin3);
+                profileDataArrayList.add(coin3);
+                calculate(coin4);
+                profileDataArrayList.add(coin4);
+                calculate(coin5);
+                profileDataArrayList.add(coin5);
+                calculate(coin6);
+                profileDataArrayList.add(coin6);
+                calculate(coin7);
+                profileDataArrayList.add(coin7);
+                calculate(coin8);
+                profileDataArrayList.add(coin8);
+                calculate(coin9);
+                profileDataArrayList.add(coin9);
                 //Update 가 끝났음을 알림
                 swipeRefreshLayout.setRefreshing(false);
             }
