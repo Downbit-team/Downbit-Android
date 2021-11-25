@@ -26,13 +26,11 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
     private RecyclerViewAdapter myRecyclerViewAdapter;
     private ArrayList<ProfileData> profileDataArrayList;
 
-
     SwipeRefreshLayout swipeRefreshLayout;
 
     Random random = new Random();
 
     int increase = 0;
-
     int start_price = 0;
 
     int bitcoin = price();
@@ -52,6 +50,12 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ProfileData coin1 = new ProfileData("비트코인", bitcoin_change, upping, bitcoin);
+        calculate(coin1);
+
+        ProfileData coin2 = new ProfileData("도지코인", doz_change, upping, doz);
+
+
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -64,7 +68,6 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         });
 
         //intent
-
         View property_btn = findViewById(R.id.property_btn);
         property_btn.setOnClickListener(this);
 
@@ -73,16 +76,14 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
 
         profileDataArrayList = new ArrayList<>();
 
-        calculate(bitcoin,bitcoin_change);
-        profileDataArrayList.add(new ProfileData("비트코인", bitcoin_change, upping, bitcoin));
 
-        calculate(doz,doz_change);
-        profileDataArrayList.add(new ProfileData("도지코인", doz_change, upping, doz));
+        profileDataArrayList.add(coin1);
+        profileDataArrayList.add(coin2);
 
-        calculate(ed,ed_change);
+
         profileDataArrayList.add(new ProfileData("이더리움", ed_change, upping, ed));
 
-        calculate(ripple,ripple_change);
+
         profileDataArrayList.add(new ProfileData("리플", ripple_change, upping, ripple));
 
 
@@ -95,7 +96,6 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         mRecyclerView.setAdapter(myRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
-
     }
 
     int price() {
@@ -103,12 +103,12 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         return start_price;
     }
 
-    void calculate(int coin, int change) {
+    void calculate(ProfileData a) {
         upping = random.nextInt(200);
 
-        tmp = coin;
-        coin *= upping;
-        change = coin - tmp;
+        tmp = a.price;
+        a.price *= upping;
+        a.increase = a.price - tmp;
     }
 
     @Override
@@ -119,4 +119,5 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         setResult(RESULT_OK,intent);
         finish();
     }
+
 }
