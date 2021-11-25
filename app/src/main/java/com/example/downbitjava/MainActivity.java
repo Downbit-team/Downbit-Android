@@ -34,27 +34,19 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
 
     Random random = new Random();
 
-    int increase = 0;
-    int start_price = 0;
+    int bitcoin_change, doz_change, ed_change, ripple_change, hive_change,
+            sand_change, bora_change, tron_change, icon_change, start_price;
 
     int bitcoin = price();
-    int bitcoin_change;
     int doz = price();
-    int doz_change;
     int ed = price();
-    int ed_change;
     int ripple = price();
-    int ripple_change;
     int hive = price();
-    int hive_change;
     int sand = price();
-    int sand_change;
     int bora = price();
-    int bora_change;
     int tron = price();
-    int tron_change;
     int icon = price();
-    int icon_change;
+
     double upping = 0;
     int tmp = 0;
 
