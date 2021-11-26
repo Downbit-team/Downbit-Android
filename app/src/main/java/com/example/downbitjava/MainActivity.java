@@ -50,7 +50,6 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
     double upping = 0;
     int tmp = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +66,6 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         ProfileData coin7 = new ProfileData("보라",bora_change,upping,bora);
         ProfileData coin8 = new ProfileData("트론",tron_change,upping,tron);
         ProfileData coin9 = new ProfileData("아이콘",icon_change,upping,icon);
-
-
-
-
-        upping = random.nextInt(200);
-//
-//        tmp = bitcoin;
-//        bitcoin *= upping;
-//        bitcoin_change = bitcoin - tmp;
 
         calculate(coin1);
         profileDataArrayList.add(coin1);
@@ -96,32 +86,12 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         calculate(coin9);
         profileDataArrayList.add(coin9);
 
-
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.d("refresh", "새로고침 성공 !!");
                 profileDataArrayList.clear();
-
-                calculate(coin1);
-                profileDataArrayList.add(coin1);
-                calculate(coin2);
-                profileDataArrayList.add(coin2);
-                calculate(coin3);
-                profileDataArrayList.add(coin3);
-                calculate(coin4);
-                profileDataArrayList.add(coin4);
-                calculate(coin5);
-                profileDataArrayList.add(coin5);
-                calculate(coin6);
-                profileDataArrayList.add(coin6);
-                calculate(coin7);
-                profileDataArrayList.add(coin7);
-                calculate(coin8);
-                profileDataArrayList.add(coin8);
-                calculate(coin9);
-                profileDataArrayList.add(coin9);
                 //Update 가 끝났음을 알림
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -149,7 +119,7 @@ public class MainActivity<mTimer> extends AppCompatActivity implements View.OnCl
         return start_price;
     }
 
-    void calculate(ProfileData a) {
+    public void calculate(ProfileData a) {
         a.upping = random.nextInt(200);
 
         tmp = a.price;
