@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("TAG", "백승민병신");
                 profileDataArrayList.clear();
                 add_coin();
             }
