@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Adapter 시작 (initiate adapter)
         myRecyclerViewAdapter = new RecyclerViewAdapter();
-
         myRecyclerViewAdapter.setProfileList(profileDataArrayList);
 
         //RecyclerView 시작 (initiate recyclerview)
@@ -147,10 +146,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("TAG", "백승민병신");
                 profileDataArrayList.clear();
                 add_coin();
             }
-        },3000);
+        },10000);
     }
 }
