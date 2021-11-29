@@ -2,9 +2,9 @@ package com.example.downbitjava;
 
 public class ProfileData {
     public String name;
-    public int increase;
+    public double increase;
     public double upping;
-    public int price;
+    public double price;
 
     public ProfileData(String name, int increase, double rate_of_change, int price) {
         this.name = name;
@@ -17,7 +17,7 @@ public class ProfileData {
         return name;
     }
 
-    public int getIncrease() {
+    public double getIncrease() {
         return increase;
     }
 
@@ -41,7 +41,7 @@ public class ProfileData {
         this.price = price;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 }

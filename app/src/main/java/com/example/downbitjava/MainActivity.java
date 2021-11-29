@@ -5,10 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
 import com.example.downbitjava.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,8 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int tron = init_start_price();
     int icon = init_start_price();
 
+    TextView upping_textView;
+
     double upping = 0;
-    int tmp = 0;
+    double tmp = 0;
 
     ProfileData coin1 = new ProfileData("비트코인", bitcoin_change, upping, bitcoin);
     ProfileData coin2 = new ProfileData("도지코인", doz_change, upping, doz);
@@ -56,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        upping_textView = findViewById(R.id.upping);
+
         profileDataArrayList = new ArrayList<>();
 
         mRecyclerView = findViewById(R.id.recyclerviewid);
@@ -63,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Adapter 시작 (initiate adapter)
         myRecyclerViewAdapter = new RecyclerViewAdapter();
         myRecyclerViewAdapter.setProfileList(profileDataArrayList);
+
+//        getSupportFragmentManager().beginTransaction().add(프래그먼트이름::).commit();
+//        getSupportFragmentManager().beginTransaction().add(프래그먼트이름::).commit();
+
 
         //RecyclerView 시작 (initiate recyclerview)
         mRecyclerView.setAdapter(myRecyclerViewAdapter);
@@ -83,26 +94,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
 
-        //intent
+        //property-intent
         View property_btn = findViewById(R.id.property_btn);
-        property_btn.setOnClickListener(this);
+//       property_btn.setOnClickListener(this);
+
 
     }
 
     int init_start_price() {
-        start_price = random.nextInt(10000) + 1;
+        start_price = random.nextInt(100000) + 1;
         return start_price;
     }
 
     public void calculate(ProfileData a) {
-        a.upping = random.nextInt(100) - 100;
+        a.upping = random.nextInt(300) - 100;
+        if(a.upping == 0) {
+            a.upping = random.nextInt(130) - 100;
+        }
+//        tmp = a.price;
+//        a.price *= a.upping;
+//        a.increase = a.price - tmp;
+        tmp = a.price;
+        a.price = (int)((tmp * (a.upping / 100)));
+        a.increase = a.price - tmp;
+
         if(a.price > 2100000000) {
             a.price = init_start_price();
         }
-
-        tmp = a.price;
-        a.price *= a.upping;
-        a.increase = a.price - tmp;
         System.out.println(a.name + " "+a.price+" " + a.increase);
     }
 
@@ -149,6 +167,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 profileDataArrayList.clear();
                 add_coin();
             }
-        },10000);
+        },3000);
     }
 }
