@@ -96,12 +96,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        });
 
         //property-intent
-        View property_btn = findViewById(R.id.property_btn);
+//        View property_btn = findViewById(R.id.property_btn);
 //        property_btn.setOnClickListener(this);
 
-
-//        getSupportFragmentManager().beginTransaction().replace(R.id.con);
-
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_1,new Afragment());
 
     }
 
