@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DownBitJava">
         <activity
+            android:name=".DialogActivity"
+            android:exported="false" />
+        <activity
             android:name=".AFragment"
             android:exported="false" />
         <activity

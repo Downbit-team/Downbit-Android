@@ -1,6 +1,7 @@
 package com.example.downbitjava;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -74,13 +75,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        getSupportFragmentManager().beginTransaction().add(프래그먼트이름::).commit();
 //        getSupportFragmentManager().beginTransaction().add(프래그먼트이름::).commit();
 
-
         //RecyclerView 시작 (initiate recyclerview)
-        mRecyclerView.setAdapter(myRecyclerViewAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        if(mRecyclerView != null) {
+            mRecyclerView.setAdapter(myRecyclerViewAdapter);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        }
 
         add_coin();
-
 
 //        swipeRefreshLayout = findViewById(R.id.swiperefresh);
 //        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -96,7 +97,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //property-intent
         View property_btn = findViewById(R.id.property_btn);
-//       property_btn.setOnClickListener(this);
+//        property_btn.setOnClickListener(this);
+
+
+//        getSupportFragmentManager().beginTransaction().replace(R.id.con);
 
 
     }
@@ -109,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void calculate(ProfileData a) {
         a.upping = random.nextInt(300) - 100;
         if(a.upping == 0) {
-            a.upping = random.nextInt(130) - 100;
+            a.upping = random.nextInt(300) - 100;
         }
 //        tmp = a.price;
 //        a.price *= a.upping;

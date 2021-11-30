@@ -1,21 +1,15 @@
 package com.example.downbitjava;
 
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
+import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 
@@ -64,6 +58,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
     TextView increase;
     TextView upping;
     TextView price;
+    private Dialog dialog;
 
     public ViewHolder(@NonNull View itemView) {
 
@@ -74,8 +69,17 @@ class ViewHolder extends RecyclerView.ViewHolder {
         increase = itemView.findViewById(R.id.increase);
         upping = itemView.findViewById(R.id.upping);
         price = itemView.findViewById(R.id.price);
-    }
 
+
+        //RecyclerView Item Click Event 처리
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                dialog = new DialogActivity(MainActivity.this,R.layout.activity_dialog);
+            }
+        });
+    }
 
     void onBind(ProfileData item) {
         sub_name.setText(item.getName());
