@@ -1,9 +1,11 @@
 package com.example.downbitjava;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 
     private ArrayList<ProfileData> CoinProfileList;
-
 
     @NonNull
     @Override
@@ -74,7 +75,12 @@ class ViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    v.getContext(DialogActivity);
+                int position = getAdapterPosition();
+
+                if(position != RecyclerView.NO_POSITION) {
+                        Dialog dialog = new Dialog(v.getContext());
+
+                }
 
 //                dialog = new DialogActivity(MainActivity.this,R.layout.activity_dialog);
             }
