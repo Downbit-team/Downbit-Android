@@ -80,9 +80,9 @@ public class Afragment extends Fragment {
     }
 
     public void calculate(ProfileData a) {
-        a.upping = random.nextInt(300) - 100;
+        a.upping = random.nextInt(300) - 200;
         if(a.upping == 0) {
-            a.upping = random.nextInt(300) - 100;
+            a.upping = random.nextInt(300) - 200;
         }
 //        tmp = a.price;
 //        a.price *= a.upping;
@@ -92,9 +92,6 @@ public class Afragment extends Fragment {
         a.price = (int)((tmp * (a.upping / 100)));
         a.increase = a.price - tmp;
 
-        if(a.price > 2100000000) {
-            a.price = init_start_price();
-        }
         System.out.println(a.name + " "+a.price+" " + a.increase);
     }
 

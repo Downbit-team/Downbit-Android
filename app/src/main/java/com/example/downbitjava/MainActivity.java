@@ -1,6 +1,7 @@
 package com.example.downbitjava;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,63 +15,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.downbitjava.databinding.ActivityMainBinding;
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
-
-//    private ActivityMainBinding binding;
-//
-//    private RecyclerView mRecyclerView;
-//    private RecyclerViewAdapter myRecyclerViewAdapter;
-//    private ArrayList<ProfileData> profileDataArrayList;
-//
-//    SwipeRefreshLayout swipeRefreshLayout;
-//
-//    Random random = new Random();
-//
-//    int bitcoin_change, doz_change, ed_change, ripple_change, hive_change,
-//            sand_change, bora_change, tron_change, icon_change, start_price;
-//
-//    int bitcoin = init_start_price();
-//    int doz = init_start_price();
-//    int ed = init_start_price();
-//    int ripple = init_start_price();
-//    int hive = init_start_price();
-//    int sand = init_start_price();
-//    int bora = init_start_price();
-//    int tron = init_start_price();
-//    int icon = init_start_price();
-
-//    TextView upping_textView;
-//
-//    double upping = 0;
-//    double tmp = 0;
-////
-//    ProfileData coin1 = new ProfileData("비트코인", bitcoin_change, upping, bitcoin);
-//    ProfileData coin2 = new ProfileData("도지코인", doz_change, upping, doz);
-//    ProfileData coin3 = new ProfileData("이더리움", ed_change, upping, ed);
-//    ProfileData coin4 = new ProfileData("리플", ripple_change, upping, ripple);
-//    ProfileData coin5 = new ProfileData("하이브", hive_change,upping,hive);
-//    ProfileData coin6 = new ProfileData("샌드박스", sand_change,upping,sand);
-//    ProfileData coin7 = new ProfileData("보라",bora_change,upping,bora);
-//    ProfileData coin8 = new ProfileData("트론",tron_change,upping,tron);
-//    ProfileData coin9 = new ProfileData("아이콘",icon_change,upping,icon);
-
-
-    //SharedPreferences Manager 로 뺄거임.
-//    public static SharedPreferences getPreferences(Context context) {
-//        return context.getSharedPreferences("saved_data", Context.MODE_PRIVATE);
-//    }
-//
-//    public static String getString(Context context, String key) {
-//        SharedPreferences prefs = getPreferences(context);
-//        String value = prefs.getString(key,"value_key");
-//        return value;
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +33,31 @@ public class MainActivity extends AppCompatActivity{
 
         getSupportFragmentManager().beginTransaction().add(R.id.frame_1, new Afragment()).commit();
 
+        TabLayout Tab_btn = (TabLayout)findViewById(R.id.Tab_btn);
+
+        Tab_btn.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                switch (tab.getPosition()) {
+                    case 0:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_1, new Afragment()).commit();
+                        break;
+                    case 1:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_1, new Bfragment()).commit();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
 //

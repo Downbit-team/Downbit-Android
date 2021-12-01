@@ -2,6 +2,7 @@ package com.example.downbitjava;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,20 +56,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 }
 class ViewHolder extends RecyclerView.ViewHolder {
 
+
     TextView sub_name;
     TextView increase;
     TextView upping;
     TextView price;
 
     public ViewHolder(@NonNull View itemView) {
-
-        //부모 클래스로부터 상속받은 필드나 메서드 참조
         super(itemView);
-
-        sub_name = itemView.findViewById(R.id.coin_sub_name);
-        increase = itemView.findViewById(R.id.increase);
-        upping = itemView.findViewById(R.id.upping);
-        price = itemView.findViewById(R.id.price);
 
 
         //RecyclerView Item Click Event 처리
@@ -76,15 +71,24 @@ class ViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 int position = getAdapterPosition();
-
                 if(position != RecyclerView.NO_POSITION) {
-                        Dialog dialog = new Dialog(v.getContext());
+                    Log.d("여기", "onClick: 터치");
+                    Dialog dialog = new Dialog(v.getContext());
 
                 }
 
 //                dialog = new DialogActivity(MainActivity.this,R.layout.activity_dialog);
             }
         });
+
+        //부모 클래스로부터 상속받은 필드나 메서드 참조
+
+        sub_name = itemView.findViewById(R.id.coin_sub_name);
+        increase = itemView.findViewById(R.id.increase);
+        upping = itemView.findViewById(R.id.upping);
+        price = itemView.findViewById(R.id.price);
+
+
     }
 
     void onBind(ProfileData item) {
