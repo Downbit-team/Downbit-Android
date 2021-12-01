@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,9 +67,8 @@ public class Afragment extends Fragment {
             binding.recyclerviewid.setAdapter(myRecyclerViewAdapter);
             binding.recyclerviewid.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), RecyclerView.VERTICAL, false));
         }
-        getFragmentManager().beginTransaction().replace(R.id.frame_1, new Afragment()).commitAllowingStateLoss();
-        add_coin();
 
+        add_coin();
 
         return binding.getRoot();
     }
@@ -126,6 +126,7 @@ public class Afragment extends Fragment {
     }
     private void handler_time() {
         Handler handler = new Handler();
+        Log.d("여기", "handler_time: 호출");
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

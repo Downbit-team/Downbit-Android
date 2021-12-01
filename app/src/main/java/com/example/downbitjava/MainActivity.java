@@ -20,7 +20,7 @@ import com.example.downbitjava.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity{
 
 //    private ActivityMainBinding binding;
 //
@@ -76,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_1, new Afragment()).commit();
+
+
+
 //
 //        upping_textView = findViewById(R.id.upping);
 //
@@ -188,13 +193,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    }
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }
