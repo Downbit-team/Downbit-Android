@@ -58,7 +58,6 @@ class ViewHolder extends RecyclerView.ViewHolder {
     TextView increase;
     TextView upping;
     TextView price;
-    private Dialog dialog;
 
     public ViewHolder(@NonNull View itemView) {
 
@@ -75,6 +74,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                    v.getContext(DialogActivity);
 
 //                dialog = new DialogActivity(MainActivity.this,R.layout.activity_dialog);
             }
@@ -88,4 +88,5 @@ class ViewHolder extends RecyclerView.ViewHolder {
         price.setText(String.valueOf(item.getPrice()));
 
     }
+
 }

@@ -10,6 +10,7 @@
     android:clickable="false"
     android:orientation="vertical"
     android:weightSum="10">
+<!--    tools:layout="@layout/activity_afragment"-->
 
 
 
@@ -66,7 +67,7 @@
             />
 
             <TextView
-                android:id="@+id/my_coin"
+                android:id="@+id/my_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3000000"
@@ -80,7 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,11 +90,12 @@
                 android:text="현금 : "
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/my_price"
+                android:id="@+id/my_money"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="134,000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
         </LinearLayout>
 
 </LinearLayout>

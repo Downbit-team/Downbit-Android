@@ -5,7 +5,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,6 +60,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProfileData coin8 = new ProfileData("트론",tron_change,upping,tron);
     ProfileData coin9 = new ProfileData("아이콘",icon_change,upping,icon);
 
+
+    //SharedPreferences Manager 로 뺄거임.
+//    public static SharedPreferences getPreferences(Context context) {
+//        return context.getSharedPreferences("saved_data", Context.MODE_PRIVATE);
+//    }
+//
+//    public static String getString(Context context, String key) {
+//        SharedPreferences prefs = getPreferences(context);
+//        String value = prefs.getString(key,"value_key");
+//        return value;
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        View property_btn = findViewById(R.id.property_btn);
 //        property_btn.setOnClickListener(this);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_1,new Afragment());
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_1, new Afragment()).commit();
 
     }
 
