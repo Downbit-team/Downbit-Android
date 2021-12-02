@@ -3,7 +3,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="320dp"
-    android:layout_height="160dp">
+    android:layout_height="160dp"
+    android:gravity="center"
+    >
 
     <TextView
         android:id="@+id/atdTitleTv"
@@ -12,8 +14,9 @@
         android:background="@android:color/background_light"
         android:gravity="start|center_horizontal|center_vertical"
         android:paddingLeft="20dp"
-        android:text="동기화 상태"
-        android:textColor="@color/red" />
+        android:text="구매"
+        android:textColor="@color/black"
+        />
 
     <TextView
         android:id="@+id/atdContentTv"
@@ -23,7 +26,7 @@
         android:gravity="start|center_horizontal|center_vertical"
         android:paddingLeft="20dp"
         android:text="이 코인을 사시겠습니까?"
-        android:textColor="@color/red"
+        android:textColor="@color/black"
         android:textSize="20sp" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,17 +39,19 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="취소" />
+            android:text="취소"
+            android:background="@drawable/text_outline"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/btn2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:background="@android:color/holo_blue_bright"
+            android:background="@drawable/text_outline"
             android:gravity="center"
             android:text="확인"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black"/>
 
 
     </LinearLayout>

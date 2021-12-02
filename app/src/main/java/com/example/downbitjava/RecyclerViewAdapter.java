@@ -1,12 +1,14 @@
 package com.example.downbitjava;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview, parent, false);
         return new ViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -55,6 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 
 }
 class ViewHolder extends RecyclerView.ViewHolder {
+    Context context;
 
 
     TextView sub_name;
@@ -70,25 +74,65 @@ class ViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final EditText ed = new EditText(v.getContext());
+                ed.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+                ed.setHint("숫자만 입력해주세요.");
+//                ed.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION) {
                     Log.d("여기", "onClick: 터치");
-                    Dialog dialog = new Dialog(v.getContext());
 
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+//                    builder.setView(R.layout.activity_dialog1);
+                    builder.setTitle("구매");
+                    builder.setMessage("코인을 구매 하시겠습니까?");
+
+                    builder.setNegativeButton("구매" , new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                                builder.setTitle("구매");
+                                builder.setMessage("몇 개를 구입 하시겠습니까?");
+                                builder.setView(ed);
+
+//                                builder.setView(R.layout.activity_dialog1);
+
+                                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                                    }
+                                });
+                                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                                builder.show();
+                        }
+                    });
+                    builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+
+                    builder.show();
                 }
-
-//                dialog = new DialogActivity(MainActivity.this,R.layout.activity_dialog);
             }
         });
-
         //부모 클래스로부터 상속받은 필드나 메서드 참조
 
         sub_name = itemView.findViewById(R.id.coin_sub_name);
         increase = itemView.findViewById(R.id.increase);
         upping = itemView.findViewById(R.id.upping);
         price = itemView.findViewById(R.id.price);
-
-
     }
 
     void onBind(ProfileData item) {
