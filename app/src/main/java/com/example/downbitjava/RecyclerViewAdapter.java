@@ -76,8 +76,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 final EditText ed = new EditText(v.getContext());
                 ed.setRawInputType(InputType.TYPE_CLASS_NUMBER);
-                ed.setHint("숫자만 입력해주세요.");
-//                ed.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+                ed.setHint("숫자를 입력해주세요.");
 
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION) {
@@ -87,23 +86,21 @@ class ViewHolder extends RecyclerView.ViewHolder {
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 //                    builder.setView(R.layout.activity_dialog1);
                     builder.setTitle("구매");
+
                     builder.setMessage("코인을 구매 하시겠습니까?");
-
                     builder.setNegativeButton("구매" , new DialogInterface.OnClickListener() {
-
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+
+//                            builder.setView(R.layout.activity_dialog1);
                                 builder.setTitle("구매");
                                 builder.setMessage("몇 개를 구입 하시겠습니까?");
                                 builder.setView(ed);
 
-//                                builder.setView(R.layout.activity_dialog1);
-
                                 builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-
 
                                     }
                                 });
@@ -128,6 +125,14 @@ class ViewHolder extends RecyclerView.ViewHolder {
             }
         });
         //부모 클래스로부터 상속받은 필드나 메서드 참조
+
+
+
+
+
+
+
+
 
         sub_name = itemView.findViewById(R.id.coin_sub_name);
         increase = itemView.findViewById(R.id.increase);
