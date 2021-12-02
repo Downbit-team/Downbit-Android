@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DownBitJava">
-        <activity
-            android:name=".Bfragment"
-            android:exported="false" />
-        <activity
-            android:name=".Dialog"
-            android:exported="false" />
-        <activity
-            android:name=".Afragment"
-            android:exported="false" />
-        <activity
-            android:name=".AFragment"
-            android:exported="false" />
-        <activity
-            android:name=".Property"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Bfragment"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Dialog"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Afragment"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".AFragment"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Property"-->
+<!--            android:exported="false" />-->
         <activity android:name=".MainActivity" />
         <activity
             android:name=".Splash"
