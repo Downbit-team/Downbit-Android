@@ -3,6 +3,7 @@ package com.example.downbitjava;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -65,13 +68,33 @@ class ViewHolder extends RecyclerView.ViewHolder {
     TextView increase;
     TextView upping;
     TextView price;
+    ConstraintLayout recyclerview_item;
+    TextView my_price;
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
 
 
         //RecyclerView Item Click Event 처리
-        itemView.setOnClickListener(new View.OnClickListener() {
+
+        //부모 클래스로부터 상속받은 필드나 메서드 참조
+
+
+        sub_name = itemView.findViewById(R.id.coin_sub_name);
+        increase = itemView.findViewById(R.id.increase);
+        upping = itemView.findViewById(R.id.upping);
+        price = itemView.findViewById(R.id.price);
+        recyclerview_item = itemView.findViewById(R.id.recyclerview_itme);
+        my_price = itemView.findViewById(R.id.my_price);
+    }
+
+    void onBind(ProfileData item) {
+        sub_name.setText(item.getName());
+        increase.setText(String.valueOf(item.getIncrease()));
+        upping.setText(item.getRate_of_change() + "%");
+        price.setText(String.valueOf(item.getPrice()));
+
+        recyclerview_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final EditText ed = new EditText(v.getContext());
@@ -87,30 +110,32 @@ class ViewHolder extends RecyclerView.ViewHolder {
 //                    builder.setView(R.layout.activity_dialog1);
                     builder.setTitle("구매");
 
-                    builder.setMessage("코인을 구매 하시겠습니까?");
+                    builder.setMessage(item.name  + "코인을 구매 하시겠습니까?\n현재 가격은" + item.price);
                     builder.setNegativeButton("구매" , new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 
 //                            builder.setView(R.layout.activity_dialog1);
-                                builder.setTitle("구매");
-                                builder.setMessage("몇 개를 구입 하시겠습니까?");
-                                builder.setView(ed);
+                            builder.setTitle("구매");
+                            builder.setMessage("몇 개를 구입 하시겠습니까?");
+                            builder.setView(ed);
 
-                                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
+                            builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
-                                    }
-                                });
-                                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                    }
-                                });
-                                builder.show();
+
+                                }
+                            });
+                            builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                            builder.show();
                         }
                     });
                     builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
@@ -124,28 +149,6 @@ class ViewHolder extends RecyclerView.ViewHolder {
                 }
             }
         });
-        //부모 클래스로부터 상속받은 필드나 메서드 참조
-
-
-
-
-
-
-
-
-
-        sub_name = itemView.findViewById(R.id.coin_sub_name);
-        increase = itemView.findViewById(R.id.increase);
-        upping = itemView.findViewById(R.id.upping);
-        price = itemView.findViewById(R.id.price);
-    }
-
-    void onBind(ProfileData item) {
-        sub_name.setText(item.getName());
-        increase.setText(String.valueOf(item.getIncrease()));
-        upping.setText(item.getRate_of_change() + "%");
-        price.setText(String.valueOf(item.getPrice()));
-
     }
 
 }
