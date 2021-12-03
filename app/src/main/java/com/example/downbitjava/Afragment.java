@@ -73,25 +73,38 @@ public class Afragment extends Fragment {
         return binding.getRoot();
     }
 
-
     int init_start_price() {
         start_price = random.nextInt(100000) + 1;
         return start_price;
     }
 
     public void calculate(ProfileData a) {
-        a.upping = random.nextInt(300) - 200;
+        a.upping = random.nextInt(300) - 100;
         if(a.upping == 0) {
-            a.upping = random.nextInt(300) - 200;
+            a.upping = random.nextInt(300) - 100;
         }
 //        tmp = a.price;
 //        a.price *= a.upping;
 //        a.increase = a.price - tmp;
-
         tmp = a.price;
-        a.price = (int)((tmp * (a.upping / 100)));
+        a.price = (int)((tmp * (100/a.upping)));
         a.increase = a.price - tmp;
 
+//        if(a.price > 0) {
+//            a.price = (int)((tmp * (a.upping / 100)));
+//            a.increase = a.price - tmp;
+//        }
+//        else if(a.price < 0 && a.upping < 0) {
+//            a.price = -1 * ((int)((tmp * (a.upping / 100))));
+//            a.increase = tmp - a.price;
+//        }
+//        else if(a. price < 0) {
+//            a.price = (int)((tmp * (a.upping / 100)));
+//            a.increase = a.price - tmp;
+//        }
+        if(a.price < 0) {
+            a.price = random.nextInt(600) + 100;
+        }
         System.out.println(a.name + " "+a.price+" " + a.increase);
     }
 
@@ -130,6 +143,6 @@ public class Afragment extends Fragment {
                 profileDataArrayList.clear();
                 add_coin();
             }
-        }, 3000);
+        }, 10000);
     }
 }
