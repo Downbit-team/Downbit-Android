@@ -63,7 +63,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 class ViewHolder extends RecyclerView.ViewHolder {
     Context context;
 
-
     TextView sub_name;
     TextView increase;
     TextView upping;
@@ -78,7 +77,6 @@ class ViewHolder extends RecyclerView.ViewHolder {
         //RecyclerView Item Click Event 처리
 
         //부모 클래스로부터 상속받은 필드나 메서드 참조
-
 
         sub_name = itemView.findViewById(R.id.coin_sub_name);
         increase = itemView.findViewById(R.id.increase);
@@ -116,7 +114,6 @@ class ViewHolder extends RecyclerView.ViewHolder {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 
-//                            builder.setView(R.layout.activity_dialog1);
                             builder.setTitle("구매");
                             builder.setMessage("몇 개를 구입 하시겠습니까?");
                             builder.setView(ed);
@@ -124,7 +121,6 @@ class ViewHolder extends RecyclerView.ViewHolder {
                             builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
 
 
                                 }
